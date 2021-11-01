@@ -51,7 +51,7 @@ client.on("messageCreate", function(message){
             break;
 
         case "remind":
-            let datetime = Date.parse(args[1] + " " + args[2] + "GMT-05:00");
+            let datetime = Date.parse(args[1] + " " + args[2] + " GMT-05:00");
             let msg = "";
             for (let i=3; i<args.length; i++) msg += args[i] + " ";
 
