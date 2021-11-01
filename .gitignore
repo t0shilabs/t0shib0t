@@ -1,6 +1,6 @@
 
 ./src/reminders
-
+*.mp3
 # Logs
 logs
 *.log
