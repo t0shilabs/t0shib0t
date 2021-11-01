@@ -57,7 +57,7 @@ client.on("messageCreate", function(message){
 
             if(datetime){
                 if(datetime < Date.now()){ client.channels.cache.get(message.channelId).send("Date must be future."); return; }
-                let dict = { userId: message.author.id, userName: message.author.username, channel: message.channelId, date: datetime, dateString: args[1] + " " + args[2], message: msg, finished: false}
+                let dict = { userId: message.author.id, channel: message.channelId, date: datetime, message: msg, finished: false}
                 let data = JSON.parse(fs.readFileSync('./src/reminders', 'utf8'));
                 data.push(dict);
                 fs.writeFileSync('./src/reminders', JSON.stringify(data));
@@ -87,7 +87,7 @@ client.on("messageCreate", function(message){
             }else{
                 let index = parseInt(args[1]) - 1;
                 let data = JSON.parse(fs.readFileSync('./src/reminders', 'utf8'));
-                if(index < 0 || index > data.length){
+                if(index < 0 || index >= data.length){
                     message.reply("Index does not exist.");
                 }else{
                     let d = data[index];
