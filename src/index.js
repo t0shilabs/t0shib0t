@@ -72,7 +72,7 @@ client.on("messageCreate", function(message){
             let data = JSON.parse(fs.readFileSync('./src/reminders', 'utf8'));
             if(data.length > 0){
                 data.forEach(function(v,k){
-                    const df = moment(v.date).format("MMMM Do YYYY, h:mm:ss a");
+                    const df = moment(v.date).utcOffset(-300).format("MMMM Do YYYY, h:mm:ss a");
                     show += (k+1) + ".-  " + df + " " + v.message + "\n";
                 });
                 client.channels.cache.get(message.channelId).send(show);
