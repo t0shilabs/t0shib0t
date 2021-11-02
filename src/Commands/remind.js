@@ -14,13 +14,15 @@ module.exports = new Command({
             let dict = { userId: message.author.id, channel: message.channelId, date: datetime, message: msg, finished: false}
 
             try{
-                let data = JSON.parse(fs.readFileSync('./src/Reminders/' + message.channelId, 'utf8'));
+                let data = JSON.parse(fs.readFileSync('./src/Reminders/' + message.channelId + ".json", 'utf8'));
                 data.push(dict);
                 fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                 client.channels.cache.get(message.channelId).send("Ok.");
+                console.log("existe");
             }catch (e) {
                 fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify([dict]));
                 client.channels.cache.get(message.channelId).send("Ok.");
+                console.log("no existe");
             }
         }else{
             client.channels.cache.get(message.channelId).send("Invalid date.");
