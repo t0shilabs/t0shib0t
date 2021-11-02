@@ -1,8 +1,9 @@
 const Client = require("./Structures/Client")
 const config = require("./config.json");
 const client = new Client();
-
+const Discord = require("discord.js")
 const fs = require('fs');
+const moment = require("moment")
 
 
 setInterval(function (){
@@ -11,9 +12,17 @@ setInterval(function (){
         let data = JSON.parse(fs.readFileSync('./src/Reminders/' + file, 'utf8'));
         data.forEach(function(v,k){
             if(Date.now() > v.date){
-                let response = "<@" + v.userId + "> " + v.message;
+
+                const df = moment(v.date).utcOffset(-300).format("MMMM Do YYYY, h:mm:ss a");
+                let response = df + "\n\n" + v.message + "\n\n<@" + v.userId + ">";
+
+                const newEmbeded = new Discord.MessageEmbed()
+                    .setColor("#304281")
+                    .setTitle("It's Happening!")
+                    .setDescription(response)
+
                 v.finished = true;
-                client.channels.cache.get(v.channel).send(response);
+                client.channels.cache.get(v.channel).send({ embeds: [newEmbeded] });
             }
         });
         let arr = data.filter(d => !d.finished);
