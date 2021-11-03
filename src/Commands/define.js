@@ -15,10 +15,9 @@ module.exports = new Command({
 
                     if(json[0]){
                         json[0].meanings.forEach(function(v,k){
-                            console.log(v);
                             msg += v.partOfSpeech + ":\n";
                             v.definitions.forEach(function(p,q){
-                                msg += "\t-" + p.definition + "\n";
+                                msg += "\t- " + p.definition + "\n";
                             });
                         });
                         message.reply(msg)
