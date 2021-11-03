@@ -29,7 +29,7 @@ setInterval(function (){
         if(arr.length === 0){
             fs.unlinkSync('./src/Reminders/' + file);
         }else{
-            fs.writeFileSync('./src/Reminders/' + file, JSON.stringify(data));
+            fs.writeFileSync('./src/Reminders/' + file, JSON.stringify(arr));
         }
     });
 

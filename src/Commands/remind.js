@@ -18,11 +18,9 @@ module.exports = new Command({
                 data.push(dict);
                 fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                 client.channels.cache.get(message.channelId).send("Ok.");
-                console.log("existe");
             }catch (e) {
                 fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify([dict]));
                 client.channels.cache.get(message.channelId).send("Ok.");
-                console.log("no existe");
             }
         }else{
             client.channels.cache.get(message.channelId).send("Invalid date.");
