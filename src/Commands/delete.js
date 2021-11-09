@@ -4,7 +4,7 @@ const Command = require("../Structures/Command")
 
 module.exports = new Command({
     name: "delete",
-    description: "deletes a reminder",
+    description: "Deletes a reminder.",
     run (message, args, client){
         if(args.length === 1 || isNaN(parseInt(args[1]))){
             message.reply("Index is needed");

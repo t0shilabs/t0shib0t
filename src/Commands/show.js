@@ -11,7 +11,7 @@ module.exports = new Command({
             let data = JSON.parse(fs.readFileSync('./src/Reminders/' + message.channelId + ".json", 'utf8'));
             if(data.length > 0){
 
-                const list = [];
+                let list = [];
 
                 data.forEach(function(v,k){
                     const value = moment(v.date).utcOffset(-300).format("MMMM Do YYYY, h:mm:ss a");

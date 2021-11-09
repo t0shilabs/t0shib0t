@@ -33,7 +33,7 @@ setInterval(function (){
         }
     });
 
-},60000);
+},30000);
 
 
 fs.readdirSync("./src/Commands").filter(file => file.endsWith('.js')).forEach(file => {

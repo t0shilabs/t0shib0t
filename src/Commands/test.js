@@ -4,7 +4,7 @@ const Discord = require("discord.js");
 
 module.exports = new Command({
     name: "test",
-    description: "lalala",
+    description: "This is a test.",
     run (message, args, client){
 
         var dict = [{ name: "1.-  November 2nd 2021, 4:25:00 pm", value: "!zen" },

@@ -5,7 +5,7 @@ module.exports = new Command({
     name: "define",
     description: "Shows the meaning of a word.",
     run (message, args, client){
-        if(args.length > 1){
+        if(args.length === 2){
             https.get('https://api.dictionaryapi.dev/api/v2/entries/en/' + args[1], (resp) => {
                 let data = '';
                 resp.on('data', (chunk) => { data += chunk; });
