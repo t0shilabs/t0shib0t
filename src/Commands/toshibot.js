@@ -17,7 +17,7 @@ module.exports = new Command({
         list.push({name: "!say {statement}" , value: "Uploads a text to speech sound for that statement."})
 
         const newEmbeded = new Discord.MessageEmbed()
-            .setColor("#FFFF00")
+            .setColor("#ff0000")
             .setTitle("t0shib0t command list.")
             .setFields(list)
 
