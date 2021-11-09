@@ -16,6 +16,7 @@ module.exports = new Command({
             try{
                 let data = JSON.parse(fs.readFileSync('./src/Reminders/' + message.channelId + ".json", 'utf8'));
                 data.push(dict);
+                data.sort(function (a, b) { if (a.date >= b.date) return 1; else return -1; });
                 fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                 client.channels.cache.get(message.channelId).send("Ok.");
             }catch (e) {
