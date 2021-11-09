@@ -105,3 +105,4 @@ dist
 
 /src/Reminders/*
 say.mp3
+config.json
