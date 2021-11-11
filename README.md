@@ -3,7 +3,7 @@
 Discord assistant.
 
 ##How to run
-1. create a config.json in src folder like "token" and "prefix" keys like this:
+1. create a config.json in src folder with "token" and "prefix" keys like this:
    `{ "token": "your-token", "prefix": "!"}`
 2. run `npm .`
 
