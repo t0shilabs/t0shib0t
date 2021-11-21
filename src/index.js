@@ -1,52 +1,21 @@
 const Client = require("./Structures/Client")
 const config = require("./config.json");
+const RemindersCron = require("./Crons/RemindersCron")
+const CommandLoader = require("./Structures/CommandLoader");
+const colors = require("./Structures/ColorsList.json");
+const fs = require("fs");
+
 const client = new Client();
-const Discord = require("discord.js")
-const fs = require('fs');
-const moment = require("moment")
+new CommandLoader(client);
+new RemindersCron(client);
 
-
-setInterval(function (){
-
-    fs.readdirSync("./src/Reminders").filter(file => file.endsWith('.json')).forEach(file => {
-        let data = JSON.parse(fs.readFileSync('./src/Reminders/' + file, 'utf8'));
-        data.forEach(function(v,k){
-            if(Date.now() > v.date){
-
-                const df = moment(v.date).utcOffset(-300).format("MMMM Do YYYY, h:mm:ss a");
-                let response = df + "\n\n" + v.message + "\n\n<@" + v.userId + ">";
-
-                const newEmbeded = new Discord.MessageEmbed()
-                    .setColor("#304281")
-                    .setTitle("It's Happening!")
-                    .setDescription(response)
-
-                v.finished = true;
-                client.channels.cache.get(v.channel).send({ embeds: [newEmbeded] });
-            }
-        });
-        let arr = data.filter(d => !d.finished);
-        if(arr.length === 0){
-            fs.unlinkSync('./src/Reminders/' + file);
-        }else{
-            fs.writeFileSync('./src/Reminders/' + file, JSON.stringify(arr));
-        }
-    });
-
-},30000);
-
-
-fs.readdirSync("./src/Commands").filter(file => file.endsWith('.js')).forEach(file => {
-    const command = require(`./Commands/${file}`);
-    client.commands.set(command.name, command);
+client.on("ready", () =>{
+    client.user.setActivity('!t0shib0t');
 });
-
-client.on("ready", () =>{ client.user.setActivity('!toshibot'); });
 
 client.on("messageCreate", function(message){
 
-    if(!message.content.startsWith(config.prefix)) return;
-    if(message.author.username === 'ToshiBot') return;
+    if(!message.content.startsWith(config.prefix) || message.author.username === 't0shib0t') return;
 
     const args = message.content.substring(config.prefix.length).split(/ +/);
     const command = client.commands.find(cmd => cmd.name === args[0])
@@ -54,6 +23,43 @@ client.on("messageCreate", function(message){
     if(!command) return;
 
     command.run(message, args, client);
+});
+
+client.on('messageReactionAdd', async (reaction, user) => {
+
+    if (reaction.partial) { try { await reaction.fetch(); } catch (error) { return; } }
+
+    let data = JSON.parse(fs.readFileSync('./src/Dbs/ColorMessages/messages.json', 'utf8'));
+
+    if(data.indexOf(reaction.message.id) !== -1){
+        const emoji = reaction.emoji.name;
+        colors.list.forEach(function(v,k){
+           if(emoji === v.symbol){
+               let role = reaction.message.guild.roles.cache.find(role => role.name === v.name);
+               let mentionedUser = reaction.message.guild.members.cache.find((m) => m.user.id === user.id);
+               mentionedUser.roles.add(role);
+           }
+        });
+    }
+
+});
+
+client.on('messageReactionRemove', async (reaction, user) => {
+
+    if (reaction.partial) { try { await reaction.fetch(); } catch (error) { return; } }
+
+    let data = JSON.parse(fs.readFileSync('./src/Dbs/ColorMessages/messages.json', 'utf8'));
+
+    if(data.indexOf(reaction.message.id) !== -1){
+        const emoji = reaction.emoji.name;
+        colors.list.forEach(function(v,k){
+            if(emoji === v.symbol){
+                let role = reaction.message.guild.roles.cache.find(role => role.name === v.name);
+                let mentionedUser = reaction.message.guild.members.cache.find((m) => m.user.id === user.id);
+                mentionedUser.roles.remove(role);
+            }
+        });
+    }
 });
 
 client.login(config.token);

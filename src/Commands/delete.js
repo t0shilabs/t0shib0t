@@ -11,16 +11,16 @@ module.exports = new Command({
         }else{
             let index = parseInt(args[1]) - 1;
             try{
-                let data = JSON.parse(fs.readFileSync('./src/Reminders/' + message.channelId + ".json", 'utf8'));
+                let data = JSON.parse(fs.readFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", 'utf8'));
                 if(index < 0 || index >= data.length){
                     message.reply("Index does not exist.");
                 }else{
                     let d = data[index];
                     data.splice(index,1);
                     if(data.length === 0){
-                        fs.unlinkSync('./src/Reminders/' + message.channelId + ".json");
+                        fs.unlinkSync('./src/Dbs/Reminders/' + message.channelId + ".json");
                     }else{
-                        fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify(data));
+                        fs.writeFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                     }
                     let deleteDate = moment(d.date).format("MMMM Do YYYY, h:mm:ss a");
                     client.channels.cache.get(message.channelId).send("Deleting... " + deleteDate + " " + d.message);

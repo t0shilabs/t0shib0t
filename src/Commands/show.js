@@ -8,7 +8,7 @@ module.exports = new Command({
     description: "Shows all reminders",
     run (message, args, client){
         try{
-            let data = JSON.parse(fs.readFileSync('./src/Reminders/' + message.channelId + ".json", 'utf8'));
+            let data = JSON.parse(fs.readFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", 'utf8'));
             if(data.length > 0){
 
                 let list = [];

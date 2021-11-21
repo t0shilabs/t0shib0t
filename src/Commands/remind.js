@@ -14,13 +14,13 @@ module.exports = new Command({
             let dict = { userId: message.author.id, channel: message.channelId, date: datetime, message: msg, finished: false}
 
             try{
-                let data = JSON.parse(fs.readFileSync('./src/Reminders/' + message.channelId + ".json", 'utf8'));
+                let data = JSON.parse(fs.readFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", 'utf8'));
                 data.push(dict);
                 data.sort(function (a, b) { if (a.date >= b.date) return 1; else return -1; });
-                fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify(data));
+                fs.writeFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                 client.channels.cache.get(message.channelId).send("Ok.");
             }catch (e) {
-                fs.writeFileSync('./src/Reminders/' + message.channelId + ".json", JSON.stringify([dict]));
+                fs.writeFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", JSON.stringify([dict]));
                 client.channels.cache.get(message.channelId).send("Ok.");
             }
         }else{

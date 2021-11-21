@@ -103,6 +103,7 @@ dist
 # TernJS port file
 .tern-port
 
-/src/Reminders/*
+/src/Dbs/Reminders/*
+/src/Dbs/ColorMessages/*
 say.mp3
 config.json

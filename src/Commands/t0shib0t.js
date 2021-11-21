@@ -2,8 +2,8 @@ const Command = require("../Structures/Command")
 const Discord = require("discord.js");
 
 module.exports = new Command({
-    name: "toshibot",
-    description: "Toshibot command list.",
+    name: "t0shib0t",
+    description: "t0shib0t command list.",
     run (message, args, client){
 
         let list = [];
