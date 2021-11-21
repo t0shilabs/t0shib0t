@@ -37,11 +37,9 @@ client.on('messageReactionAdd', async (reaction, user) => {
            if(emoji === v.symbol){
                let role = reaction.message.guild.roles.cache.find(role => role.name === v.name);
                let mentionedUser = reaction.message.guild.members.cache.find((m) => m.user.id === user.id);
-               try{
-                   mentionedUser.roles.add(role);
-               }catch (e){
-                   console.log(e);
-               }
+                mentionedUser.roles.add(role).catch(
+                    () => client.channels.cache.get(reaction.message.channelId).send("Something went wrong. Make sure I have enough privileges to assign roles.").catch()
+                );
            }
         });
     }
@@ -60,11 +58,9 @@ client.on('messageReactionRemove', async (reaction, user) => {
             if(emoji === v.symbol){
                 let role = reaction.message.guild.roles.cache.find(role => role.name === v.name);
                 let mentionedUser = reaction.message.guild.members.cache.find((m) => m.user.id === user.id);
-                try{
-                    mentionedUser.roles.remove(role);
-                }catch (e){
-                    console.log(e);
-                }
+                mentionedUser.roles.remove(role).catch(
+                    () => client.channels.cache.get(reaction.message.channelId).send("Something went wrong. Make sure I have enough privileges to assign roles.").catch()
+                );
             }
         });
     }
