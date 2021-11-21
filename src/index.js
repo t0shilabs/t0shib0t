@@ -31,13 +31,17 @@ client.on('messageReactionAdd', async (reaction, user) => {
 
     let data = JSON.parse(fs.readFileSync('./src/Dbs/ColorMessages/messages.json', 'utf8'));
 
-    if(data.indexOf(reaction.message.id) !== -1){
+    if(data.indexOf(reaction.message.id) !== -1 && user.username !== 't0shib0t'){
         const emoji = reaction.emoji.name;
         colors.list.forEach(function(v,k){
            if(emoji === v.symbol){
                let role = reaction.message.guild.roles.cache.find(role => role.name === v.name);
                let mentionedUser = reaction.message.guild.members.cache.find((m) => m.user.id === user.id);
-               mentionedUser.roles.add(role);
+               try{
+                   mentionedUser.roles.add(role);
+               }catch (e){
+                   console.log(e);
+               }
            }
         });
     }
@@ -50,13 +54,17 @@ client.on('messageReactionRemove', async (reaction, user) => {
 
     let data = JSON.parse(fs.readFileSync('./src/Dbs/ColorMessages/messages.json', 'utf8'));
 
-    if(data.indexOf(reaction.message.id) !== -1){
+    if(data.indexOf(reaction.message.id) !== -1 && user.username !== 't0shib0t'){
         const emoji = reaction.emoji.name;
         colors.list.forEach(function(v,k){
             if(emoji === v.symbol){
                 let role = reaction.message.guild.roles.cache.find(role => role.name === v.name);
                 let mentionedUser = reaction.message.guild.members.cache.find((m) => m.user.id === user.id);
-                mentionedUser.roles.remove(role);
+                try{
+                    mentionedUser.roles.remove(role);
+                }catch (e){
+                    console.log(e);
+                }
             }
         });
     }

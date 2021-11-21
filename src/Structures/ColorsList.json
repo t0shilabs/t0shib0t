@@ -2,7 +2,7 @@
     {"name": "red", "color": "RED", "emoji": ":apple:", "symbol": "🍎"},
     {"name": "blue", "color": "BLUE", "emoji": ":blueberries:", "symbol": "🫐"},
     {"name": "yellow", "color": "YELLOW", "emoji": ":banana:", "symbol": "🍌"},
-    {"name": "pink", "color": "#682a35", "emoji": ":pig:", "symbol": "🐷"},
+    {"name": "pink", "color": "#eb7286", "emoji": ":pig:", "symbol": "🐷"},
     {"name": "purple", "color": "PURPLE", "emoji": ":grapes:", "symbol": "🍇"},
     {"name": "orange", "color": "ORANGE", "emoji": ":tangerine:", "symbol": "🍊"},
     {"name": "brown", "color": "#964B00", "emoji": ":potato:", "symbol": "🥔"},
