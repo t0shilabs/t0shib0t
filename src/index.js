@@ -3,11 +3,11 @@ const config = require("./config.json");
 const RemindersCron = require("./Crons/RemindersCron")
 const CommandLoader = require("./Structures/CommandLoader");
 const SetRoleReaction = require("./Actions/SetRoleReaction")
-const { Player } = require("discord-music-player");
+const { Player, Utils } = require("discord-music-player");
 const Discord = require("discord.js");
 
 const client = new Client();
-const player = new Player(client, { leaveOnEmpty: false});
+const player = new Player(client, { leaveOnEmpty: false, leaveOnEnd: false});
 
 CommandLoader(client);
 RemindersCron(client);

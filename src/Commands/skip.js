@@ -1,6 +1,4 @@
 const Command = require("../Structures/Command")
-const gTTS = require("gtts");
-const Discord = require("discord.js");
 
 module.exports = new Command({
     name: "skip",
