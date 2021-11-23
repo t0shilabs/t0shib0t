@@ -1,5 +1,6 @@
 const Command = require("../Structures/Command")
 const https = require('https');
+const Discord = require("discord.js");
 
 module.exports = new Command({
     name: "zen",
@@ -10,9 +11,11 @@ module.exports = new Command({
             resp.on('data', (chunk) => { data += chunk; });
             resp.on('end', () => {
                 try{
-                    message.channel.send(JSON.parse(data)[0].q);
+                    const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription(JSON.parse(data)[0].q)
+                    message.channel.send({ embeds: [newEmbeded] });
                 }catch (e) {
-                    message.channel.send("I failed retrieving a zen quote.");
+                    const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("I failed retrieving a zen quote.")
+                    message.channel.send({ embeds: [newEmbeded] });
                 }
             });
         });

@@ -26,10 +26,12 @@ module.exports = new Command({
 
                 message.channel.send({ embeds: [newEmbeded] });
             }else{
-                message.channel.send("There are not upcoming events.");
+                const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("There are not upcoming events.")
+                message.channel.send({ embeds: [newEmbeded] });
             }
         } catch (err) {
-            message.channel.send("There are not upcoming events.");
+            const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("There are not upcoming events.")
+            message.channel.send({ embeds: [newEmbeded] });
         }
     }
 })

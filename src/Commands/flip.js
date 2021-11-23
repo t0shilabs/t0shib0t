@@ -1,4 +1,5 @@
 const Command = require("../Structures/Command")
+const Discord = require("discord.js");
 
 module.exports = new Command({
     name: "flip",
@@ -9,10 +10,12 @@ module.exports = new Command({
 
         if(num === 0){
             response += "**Tail**";
-            message.channel.send(response);
+            const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription(response)
+            message.channel.send({ embeds: [newEmbeded] });
         }else{
             response += "**Head**";
-            message.channel.send(response);
+            const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription(response)
+            message.channel.send({ embeds: [newEmbeded] });
         }
     }
 })

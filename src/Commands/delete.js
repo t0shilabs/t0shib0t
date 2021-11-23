@@ -1,6 +1,7 @@
 const fs = require("fs")
 const moment = require("moment")
 const Command = require("../Structures/Command")
+const Discord = require("discord.js");
 
 module.exports = new Command({
     name: "delete",
@@ -13,7 +14,8 @@ module.exports = new Command({
             try{
                 let data = JSON.parse(fs.readFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", 'utf8'));
                 if(index < 0 || index >= data.length){
-                    message.reply("Index does not exist.");
+                    const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("Index does not exist.")
+                    message.channel.send({ embeds: [newEmbeded] });
                 }else{
                     let d = data[index];
                     data.splice(index,1);
@@ -22,11 +24,15 @@ module.exports = new Command({
                     }else{
                         fs.writeFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                     }
+
                     let deleteDate = moment(d.date).format("MMMM Do YYYY, h:mm:ss a");
-                    message.channel.send("Deleting... " + deleteDate + " " + d.message);
+                    const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription(`Deleting... ${deleteDate} ${d.message}`)
+                    message.channel.send({ embeds: [newEmbeded] });
+
                 }
             }catch (e){
-                message.channel.send("Nothing to delete.");
+                const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("Nothing to delete.")
+                message.channel.send({ embeds: [newEmbeded] });
             }
         }
     }

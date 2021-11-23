@@ -1,5 +1,6 @@
 const fs = require("fs");
 const colors = require("../Structures/ColorsList.json");
+const Discord = require("discord.js");
 
 module.exports = function (reaction, user, set) {
 
@@ -13,11 +14,17 @@ module.exports = function (reaction, user, set) {
                 let mentionedUser = reaction.message.guild.members.cache.find((m) => m.user.id === user.id);
                 if(set){
                     mentionedUser.roles.add(role).catch(
-                        () => reaction.channel.send("Something went wrong. Make sure I have enough privileges to assign roles.").catch()
+                        function(){
+                            const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("Something went wrong. Make sure I have enough privileges to assign roles.")
+                            reaction.channel.send({ embeds: [newEmbeded] });
+                        }
                     )
                 }else{
                     mentionedUser.roles.remove(role).catch(
-                        () => reaction.channel.send("Something went wrong. Make sure I have enough privileges to assign roles.").catch()
+                        function(){
+                            const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("Something went wrong. Make sure I have enough privileges to assign roles.")
+                            reaction.channel.send({ embeds: [newEmbeded] });
+                        }
                     )
                 }
             }
