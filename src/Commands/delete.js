@@ -23,10 +23,10 @@ module.exports = new Command({
                         fs.writeFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                     }
                     let deleteDate = moment(d.date).format("MMMM Do YYYY, h:mm:ss a");
-                    client.channels.cache.get(message.channelId).send("Deleting... " + deleteDate + " " + d.message);
+                    message.channel.send("Deleting... " + deleteDate + " " + d.message);
                 }
             }catch (e){
-                client.channels.cache.get(message.channelId).send("Nothing to delete.");
+                message.channel.send("Nothing to delete.");
             }
         }
     }

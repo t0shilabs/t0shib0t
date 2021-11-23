@@ -21,6 +21,6 @@ module.exports = new Command({
             .setTitle("t0shib0t command list.")
             .setFields(list)
 
-        client.channels.cache.get(message.channelId).send({ embeds: [newEmbeded] });
+        message.channel.send({ embeds: [newEmbeded] });
     }
 })

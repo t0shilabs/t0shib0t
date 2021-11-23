@@ -18,7 +18,7 @@ module.exports = new Command({
         var gtts = new gTTS(say, 'es');
         gtts.save('./src/Sounds/say.mp3', function (err, result) {
             if(err) { throw new Error(err) }
-            client.channels.cache.get(message.channelId).send({ files: ['./src/Sounds/say.mp3'] });
+            message.channel.send({ files: ['./src/Sounds/say.mp3'] });
         });
     }
 })

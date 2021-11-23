@@ -9,10 +9,10 @@ module.exports = new Command({
 
         if(num === 0){
             response += "**Tail**";
-            client.channels.cache.get(message.channelId).send(response);
+            message.channel.send(response);
         }else{
             response += "**Head**";
-            client.channels.cache.get(message.channelId).send(response);
+            message.channel.send(response);
         }
     }
 })

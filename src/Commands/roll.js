@@ -10,6 +10,6 @@ module.exports = new Command({
         }else{
             response = "<@" + message.author.id + "> rolled **" + (Math.floor(Math.random() * parseInt(args[1])) + 1) + "** out of " + args[1];
         }
-        client.channels.cache.get(message.channelId).send(response);
+        message.channel.send(response);
     }
 })

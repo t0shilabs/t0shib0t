@@ -24,12 +24,12 @@ module.exports = new Command({
                     .setTitle("Upcoming Events List!")
                     .setFields(list)
 
-                client.channels.cache.get(message.channelId).send({ embeds: [newEmbeded] });
+                message.channel.send({ embeds: [newEmbeded] });
             }else{
-                client.channels.cache.get(message.channelId).send("There are not upcoming events.");
+                message.channel.send("There are not upcoming events.");
             }
         } catch (err) {
-            client.channels.cache.get(message.channelId).send("There are not upcoming events.");
+            message.channel.send("There are not upcoming events.");
         }
     }
 })

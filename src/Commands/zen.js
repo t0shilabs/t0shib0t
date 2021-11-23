@@ -10,9 +10,9 @@ module.exports = new Command({
             resp.on('data', (chunk) => { data += chunk; });
             resp.on('end', () => {
                 try{
-                    client.channels.cache.get(message.channelId).send(JSON.parse(data)[0].q);
+                    message.channel.send(JSON.parse(data)[0].q);
                 }catch (e) {
-                    client.channels.cache.get(message.channelId).send("I failed retrieving a zen quote.");
+                    message.channel.send("I failed retrieving a zen quote.");
                 }
             });
         });
