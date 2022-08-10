@@ -13,6 +13,7 @@ module.exports = new Command({
         list.push({name: "!show" , value: "Show all upcoming  events."})
         list.push({name: "!delete {index}" , value: "Deletes the reminder of that specific index."})
         list.push({name: "!zen" , value: "Texts a random zen quote."})
+        list.push({name: "!joke" , value: "Tells a joke."})
         list.push({name: "!define {word}" , value: "Texts de definitions of {word}."})
         list.push({name: "!say {statement}" , value: "Uploads a text to speech sound for that statement."})
         list.push({name: "!horn" , value: "Play the haunting horn to summon hunters."})
