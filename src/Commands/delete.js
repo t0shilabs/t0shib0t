@@ -25,7 +25,7 @@ module.exports = new Command({
                         fs.writeFileSync('./src/Dbs/Reminders/' + message.channelId + ".json", JSON.stringify(data));
                     }
 
-                    let deleteDate = moment(d.date).format("MMMM Do YYYY, h:mm:ss a");
+                    let deleteDate = moment(d.date).utcOffset(-300).format("MMMM Do YYYY, h:mm:ss a");
                     const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription(`Deleting... ${deleteDate} ${d.message}`)
                     message.channel.send({ embeds: [newEmbeded] });
 

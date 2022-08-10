@@ -11,7 +11,7 @@ module.exports = function (client) {
                 if(Date.now() > v.date){
 
                     const df = moment(v.date).utcOffset(-300).format("MMMM Do YYYY, h:mm:ss a");
-                    let response = df + "\n\n" + v.message + "\n\n<@" + v.userId + ">";
+                    let response = df + "\n\n" + v.message + "\n\n@here";
 
                     const newEmbeded = new Discord.MessageEmbed()
                         .setColor("#304281")

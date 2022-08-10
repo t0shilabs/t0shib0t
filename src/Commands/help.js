@@ -2,7 +2,7 @@ const Command = require("../Structures/Command")
 const Discord = require("discord.js");
 
 module.exports = new Command({
-    name: "t0shib0t",
+    name: "help",
     description: "t0shib0t command list.",
     run (message, args, client){
 
@@ -22,7 +22,7 @@ module.exports = new Command({
         list.push({name: "!pollo" , value: "Por lo menos tengo pollo."})
         list.push({name: "!leeroy" , value: "Leeeeeroooooyyyy Jeeeenkiiiiings."})
         */
-
+        
         const newEmbeded = new Discord.MessageEmbed()
             .setColor("#ff0000")
             .setTitle("t0shib0t command list.")

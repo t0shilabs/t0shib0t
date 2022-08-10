@@ -31,7 +31,7 @@ module.exports = new Command({
                 message.channel.send({ embeds: [newEmbeded] });
             }
         }else{
-            const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("Invalid date.")
+            const newEmbeded = new Discord.MessageEmbed().setColor("#ffffff").setDescription("The correct format is: !remind {yyyy/mm/dd} {hh:mm:ss} {title}")
             message.channel.send({ embeds: [newEmbeded] });
         }
     }
