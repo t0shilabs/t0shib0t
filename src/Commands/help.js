@@ -17,13 +17,14 @@ module.exports = new Command({
         list.push({name: "!define {word}" , value: "Texts de definitions of {word}."})
         list.push({name: "!say {statement}" , value: "Uploads a text to speech sound for that statement."})
         list.push({name: "!horn" , value: "Play the haunting horn to summon hunters."})
+        list.push({name: "!eval {statement}" , value: "Evaluates javascript code."})
 
         /*
         list.push({name: "!murloc" , value: "mrglmrglmrglmrgl."})
         list.push({name: "!pollo" , value: "Por lo menos tengo pollo."})
         list.push({name: "!leeroy" , value: "Leeeeeroooooyyyy Jeeeenkiiiiings."})
         */
-        
+
         const newEmbeded = new Discord.MessageEmbed()
             .setColor("#ff0000")
             .setTitle("t0shib0t command list.")
